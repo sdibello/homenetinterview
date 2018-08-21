@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeNetProc", "HomeNetProc\HomeNetProc.csproj", "{D737EF9F-30DF-4EB3-B517-17856B188F34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeNetProc", "HomeNetProc\HomeNetProc.csproj", "{D737EF9F-30DF-4EB3-B517-17856B188F34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IO.Swagger", "D:\git\home-csharp-client\src\IO.Swagger\IO.Swagger.csproj", "{FCFA907B-1FFB-4E6B-A836-BCDEFF3257BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "homeNet-Processor", "homeNet-Processor\homeNet-Processor.csproj", "{A358047B-D621-44B2-8E2A-E970E7C41386}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "homeNet-Processor", "homeNet-Processor\homeNet-Processor.csproj", "{A358047B-D621-44B2-8E2A-E970E7C41386}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "apiClient", "apiClient\apiClient.csproj", "{AD0EE671-B610-41DB-BED4-A7CF49F417BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "apiClient", "apiClient\apiClient.csproj", "{AD0EE671-B610-41DB-BED4-A7CF49F417BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +19,6 @@ Global
 		{D737EF9F-30DF-4EB3-B517-17856B188F34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D737EF9F-30DF-4EB3-B517-17856B188F34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D737EF9F-30DF-4EB3-B517-17856B188F34}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FCFA907B-1FFB-4E6B-A836-BCDEFF3257BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FCFA907B-1FFB-4E6B-A836-BCDEFF3257BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FCFA907B-1FFB-4E6B-A836-BCDEFF3257BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FCFA907B-1FFB-4E6B-A836-BCDEFF3257BE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A358047B-D621-44B2-8E2A-E970E7C41386}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A358047B-D621-44B2-8E2A-E970E7C41386}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A358047B-D621-44B2-8E2A-E970E7C41386}.Release|Any CPU.ActiveCfg = Release|Any CPU

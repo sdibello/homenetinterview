@@ -17,30 +17,38 @@ namespace homeNet_Processor
         {
             var simpleclient = new apiClient.simpleClient();
             var datasetid = simpleclient.GetDataSet();
+            var vechileDetails = new List<apiClient.rdo.VehicleDetailsRepsonse>();
+            var dealerDetails = new List<apiClient.rdo.DealerDetailResponse>();
 
-            var vehicles = simpleclient.GetvehicleList(datasetid);
+            var vehiclesWorkList = simpleclient.GetvehicleList(datasetid);
 
+            Parallel.ForEach(vehiclesWorkList, (id) => {
+                var apiresponse = simpleclient.GetvehicleDetails(datasetid, id);
+                if (apiresponse.Item2 == 200)
+                {
+                    vechileDetails.Add(apiresponse.Item1);
+                }
+            });
 
+            Parallel.ForEach(vechileDetails, (vdetails) => {
+                var apiresponse = simpleclient.GetDealerDetails(datasetid, vdetails.dealerId);
+                if (apiresponse.Item2 == 200)
+                {
+                    dealerDetails.Add(apiresponse.Item1);
+                }
+            });
 
-            //var formParams = new Dictionary<string, string>();
-            //var headerParams = new Dictionary<string, string>() {{ "Accept", "application/json" }};
-            //var qParams = new List<KeyValuePair<string, string>>();
-            //var fileParams = new Dictionary<string, FileParameter>();
-            //var pathParams = new Dictionary<string, string>();
-            //var contentType = "application/json; charset=utf-8";
+            foreach (var item in vechileDetails)
+            {
+                Console.WriteLine("{0}{1}{2}{3}", item.make, item.model, item.vehicleId, item.year);            
+            }
 
-            //try
-            //{
-            //    var result = _client.CallApi("api/datasetId", Method.GET, qParams, null, headerParams, formParams, fileParams, pathParams, contentType);
-            //    Console.WriteLine(result);
-            //}
-            //catch (Exception) {
-
-            //    throw;
-            //}
+            foreach (var item in dealerDetails)
+            {
+                Console.WriteLine("{0}{1}", item.dealerId, item.name);
+            }
 
         }
-
 
     }
 }

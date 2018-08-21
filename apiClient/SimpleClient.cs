@@ -71,19 +71,46 @@ namespace apiClient
 
 
 
-        private async Task<Tuple<rdo.VehicleDetailsRepsonse, int>> GetvehicleDetails(string datasetId, string vehicleId)
+        public Tuple<rdo.VehicleDetailsRepsonse, int> GetvehicleDetails(string datasetId, int vehcileID)
         {
-            HttpResponseMessage response = await _client.GetAsync(string.Format("{0}/api/{1}/vehicles/{2} ", _client.BaseAddress, datasetId, vehicleId));
-            rdo.VehicleDetailsRepsonse vehicleobj = null;
+            Task<Tuple< rdo.VehicleDetailsRepsonse, int>> vehicleDetailTask = Task.Run(async () => await GetvehiclesDetails(datasetId, vehcileID));
+            vehicleDetailTask.Wait();
+            Tuple< rdo.VehicleDetailsRepsonse, int> result = vehicleDetailTask.Result;
+
+            if (result == null)
+            {
+                //log error
+            }
+            return result;
+        }
+
+        private async Task<Tuple<rdo.VehicleDetailsRepsonse, int>> GetvehiclesDetails(string datasetId, int vechileId)
+        {
+            HttpResponseMessage response = await _client.GetAsync(string.Format("{0}/api/{1}/vehicles/{2} ", _client.BaseAddress, datasetId, vechileId.ToString()));
+            rdo.VehicleDetailsRepsonse vehicleDetailsobj = null;
             if (response.IsSuccessStatusCode)
             {
-                vehicleobj = await response.Content.ReadAsAsync<rdo.VehicleDetailsRepsonse>();
-                return new Tuple<rdo.VehicleDetailsRepsonse, int>(vehicleobj, (int)response.StatusCode);
+                vehicleDetailsobj = await response.Content.ReadAsAsync<rdo.VehicleDetailsRepsonse>();
+                return new Tuple<rdo.VehicleDetailsRepsonse, int>(vehicleDetailsobj, (int)response.StatusCode);
             }
             return null;
         }
 
-        private async Task<Tuple<rdo.DealerDetailResponse, int>> GetDealerDetail(string datasetId, string dealerId)
+
+
+        public Tuple<rdo.DealerDetailResponse, int> GetDealerDetails(string datasetId, int dealerId)
+        {
+            Task<Tuple<rdo.DealerDetailResponse, int>> DealerDetailTask = Task.Run(async () => await GetDealerDetail(datasetId, dealerId));
+            DealerDetailTask.Wait();
+            Tuple<rdo.DealerDetailResponse, int> result = DealerDetailTask.Result;
+
+            if (result == null) {
+                //log error
+            }
+            return result;
+        }
+
+        private async Task<Tuple<rdo.DealerDetailResponse, int>> GetDealerDetail(string datasetId, int dealerId)
         {
             HttpResponseMessage response = await _client.GetAsync(string.Format("{0}/api/{1}/dealers/{2} ", _client.BaseAddress, datasetId, dealerId));
             rdo.DealerDetailResponse dealerobj = null;

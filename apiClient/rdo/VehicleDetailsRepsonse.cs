@@ -4,7 +4,7 @@ using System.Text;
 
 namespace apiClient.rdo
 {
-    class VehicleDetailsRepsonse
+    public class VehicleDetailsRepsonse
     {
         public int vehicleId { get; set; }
         public int year { get; set; }
