@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.1" />
+    <PackageReference Include="RestSharp" Version="105.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\apiClient\apiClient.csproj" />
+    <ProjectReference Include="D:\git\home-csharp-client\src\IO.Swagger\IO.Swagger.csproj" />
+  </ItemGroup>
+
+</Project>

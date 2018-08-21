@@ -1,0 +1,14 @@
+C:\Users\sdibe\Documents\Visual Studio 2017\Projects\HomeNetProc\homeNet-Processor\bin\Debug\netcoreapp2.0\homeNet-Processor.deps.json
+C:\Users\sdibe\Documents\Visual Studio 2017\Projects\HomeNetProc\homeNet-Processor\bin\Debug\netcoreapp2.0\homeNet-Processor.dll
+C:\Users\sdibe\Documents\Visual Studio 2017\Projects\HomeNetProc\homeNet-Processor\bin\Debug\netcoreapp2.0\IO.Swagger.dll
+C:\Users\sdibe\Documents\Visual Studio 2017\Projects\HomeNetProc\homeNet-Processor\bin\Debug\netcoreapp2.0\IO.Swagger.pdb
+C:\Users\sdibe\Documents\Visual Studio 2017\Projects\HomeNetProc\homeNet-Processor\obj\Debug\netcoreapp2.0\homeNet-Processor.csprojAssemblyReference.cache
+C:\Users\sdibe\Documents\Visual Studio 2017\Projects\HomeNetProc\homeNet-Processor\obj\Debug\netcoreapp2.0\homeNet-Processor.csproj.CoreCompileInputs.cache
+C:\Users\sdibe\Documents\Visual Studio 2017\Projects\HomeNetProc\homeNet-Processor\obj\Debug\netcoreapp2.0\homeNet-Processor.AssemblyInfoInputs.cache
+C:\Users\sdibe\Documents\Visual Studio 2017\Projects\HomeNetProc\homeNet-Processor\obj\Debug\netcoreapp2.0\homeNet-Processor.AssemblyInfo.cs
+C:\Users\sdibe\Documents\Visual Studio 2017\Projects\HomeNetProc\homeNet-Processor\obj\Debug\netcoreapp2.0\homeNet-Processor.csproj.CopyComplete
+C:\Users\sdibe\Documents\Visual Studio 2017\Projects\HomeNetProc\homeNet-Processor\bin\Debug\netcoreapp2.0\homeNet-Processor.pdb
+C:\Users\sdibe\Documents\Visual Studio 2017\Projects\HomeNetProc\homeNet-Processor\obj\Debug\netcoreapp2.0\homeNet-Processor.dll
+C:\Users\sdibe\Documents\Visual Studio 2017\Projects\HomeNetProc\homeNet-Processor\obj\Debug\netcoreapp2.0\homeNet-Processor.pdb
+C:\Users\sdibe\Documents\Visual Studio 2017\Projects\HomeNetProc\homeNet-Processor\bin\Debug\netcoreapp2.0\apiClient.dll
+C:\Users\sdibe\Documents\Visual Studio 2017\Projects\HomeNetProc\homeNet-Processor\bin\Debug\netcoreapp2.0\apiClient.pdb
