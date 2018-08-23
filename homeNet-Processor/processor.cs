@@ -1,52 +1,55 @@
-﻿using System;
+﻿using apiClient;
+using apiClient.dto;
+using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using RestSharp;
 
 namespace homeNet_Processor
 {
     public class processor
     {
-        public processor()
+        procConfig _config;
+        IApi _client;
+
+        /// <summary>
+        /// constructor.  
+        /// </summary>
+        /// <param name="config">config settings</param>
+        public processor(procConfig config)
         {
-            //this._client = new IO.Swagger.Client.ApiClient("http://vautointerview.azurewebsites.net");
+            this._config = config;
+            _client = apiClient.simpleClient.CreateInstance();
+            _client.setBaseAddress(_config.baseUrl);
             InitiateProcessAsync();
         }
 
         private void InitiateProcessAsync()
         {
-            var simpleclient = new apiClient.simpleClient();
-            var datasetid = simpleclient.GetDataSet();
-            var vechileDetails = new List<apiClient.rdo.VehicleDetailsRepsonse>();
-            var dealerDetails = new List<apiClient.rdo.DealerDetailResponse>();
+            var service = new homeNetProcessor.Service(_client);
 
-            var vehiclesWorkList = simpleclient.GetvehicleList(datasetid);
+            Answer answer = new Answer();
 
-            Parallel.ForEach(vehiclesWorkList, (id) => {
-                var apiresponse = simpleclient.GetvehicleDetails(datasetid, id);
-                if (apiresponse.Item2 == 200)
-                {
-                    vechileDetails.Add(apiresponse.Item1);
-                }
-            });
-
-            Parallel.ForEach(vechileDetails, (vdetails) => {
-                var apiresponse = simpleclient.GetDealerDetails(datasetid, vdetails.dealerId);
-                if (apiresponse.Item2 == 200)
-                {
-                    dealerDetails.Add(apiresponse.Item1);
-                }
-            });
-
-            foreach (var item in vechileDetails)
+            foreach (var item in service.dealerDetails)
             {
-                Console.WriteLine("{0}{1}{2}{3}", item.make, item.model, item.vehicleId, item.year);            
+                var dealer = new Dealers() {Name = item.name, DealerId = item.dealerId };
+                var check =  answer.dealers.SingleOrDefault(x => x.Name == dealer.Name);
+                if (check == null) {
+                    answer.dealers.Add(dealer);
+                }
             }
 
-            foreach (var item in dealerDetails)
-            {
-                Console.WriteLine("{0}{1}", item.dealerId, item.name);
+            foreach (var item in service.vechileDetails) {
+                var finddealer = answer.dealers.Where(x => x.DealerId == item.dealerId).Single();
+                var car = new Vehicles() { Make = item.make, Model = item.model, Year = item.year, VechileId = item.vehicleId };
+                var check = finddealer.vehicles.SingleOrDefault(x => x.VechileId == item.vehicleId);
+                if (check == null) {
+                    finddealer.vehicles.Add(car);
+                }
             }
+
+            //should be done.
+            Console.Write(answer.dealers.First().DealerId);
 
         }
 

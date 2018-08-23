@@ -7,7 +7,9 @@ namespace HomeNetProc
     {
         static void Main(string[] args)
         {
-            var obj = new processor();
+            var config = new homeNet_Processor.procConfig();
+            config.readConfig();
+            var obj = new homeNet_Processor.processor(config);
             Console.ReadLine();
         }
     }
