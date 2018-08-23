@@ -10,7 +10,7 @@ namespace homeNet_Processor
     public class processor
     {
         procConfig _config;
-        IApi _client;
+        simpleClient _client;
 
         /// <summary>
         /// constructor.  
@@ -19,7 +19,7 @@ namespace homeNet_Processor
         public processor(procConfig config)
         {
             this._config = config;
-            _client = apiClient.simpleClient.CreateInstance();
+            _client = new simpleClient();
             _client.setBaseAddress(_config.baseUrl);
             InitiateProcessAsync();
         }
@@ -50,6 +50,9 @@ namespace homeNet_Processor
 
             //should be done.
             Console.Write(answer.dealers.First().DealerId);
+
+            if (service.PostAnswer(answer))
+                Console.WriteLine("done");
 
         }
 

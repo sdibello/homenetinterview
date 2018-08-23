@@ -9,7 +9,7 @@ using Newtonsoft.Json.Serialization;
 namespace apiClient
 {
 
-    public class simpleClient : IApi
+    public class simpleClient 
     {
         static HttpClient _client;
 
@@ -18,7 +18,7 @@ namespace apiClient
             _client = new HttpClient(new HttpClientHandler { UseProxy = false });
         }
 
-        async Task<int?> IApi.PostAnswer(string datasetId, dto.Answer answer)
+        public async Task<int?> PostAnswer(string datasetId, dto.Answer answer)
         {
             var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(answer);
             var stringContent = new StringContent(JsonConvert.SerializeObject(answer), Encoding.UTF8, "application/json");
@@ -32,7 +32,7 @@ namespace apiClient
         }
 
 
-        async Task<Tuple<string, int>> IApi.GetDataset()
+        public async Task<Tuple<string, int>> GetDataset()
         {
             HttpResponseMessage response = await _client.GetAsync(string.Format("{0}/api/datasetId", _client.BaseAddress));
             rdo.DataSetResponse datasetobj = null;
@@ -44,7 +44,7 @@ namespace apiClient
             return null;
         }
 
-        async Task<Tuple<int[], int>> IApi.Getvehicles(string datasetId)
+        public async Task<Tuple<int[], int>> Getvehicles(string datasetId)
         {
             HttpResponseMessage response = await _client.GetAsync(string.Format("{0}/api/{1}/vehicles ", _client.BaseAddress, datasetId));
             rdo.vehiclesReponse vehicleobj = null;
@@ -56,7 +56,7 @@ namespace apiClient
             return null;
         }
 
-        async Task<Tuple<VehicleDetailsRepsonse, int>> IApi.GetvehiclesDetails(string datasetId, int vechileId)
+        public async Task<Tuple<VehicleDetailsRepsonse, int>> GetvehiclesDetails(string datasetId, int vechileId)
         {
             HttpResponseMessage response = await _client.GetAsync(string.Format("{0}/api/{1}/vehicles/{2} ", _client.BaseAddress, datasetId, vechileId.ToString()));
             rdo.VehicleDetailsRepsonse vehicleDetailsobj = null;
@@ -68,7 +68,7 @@ namespace apiClient
             return null;
         }
 
-        async Task<Tuple<DealerDetailResponse, int>> IApi.GetDealerDetail(string datasetId, int dealerId)
+        public async Task<Tuple<DealerDetailResponse, int>> GetDealerDetail(string datasetId, int dealerId)
         {
             HttpResponseMessage response = await _client.GetAsync(string.Format("{0}/api/{1}/dealers/{2} ", _client.BaseAddress, datasetId, dealerId));
             rdo.DealerDetailResponse dealerobj = null;
@@ -85,10 +85,6 @@ namespace apiClient
             _client.BaseAddress = new Uri(baseAddress);             //http://vautointerview.azurewebsites.net
         }
 
-        public static IApi CreateInstance()
-        {
-            var client = new simpleClient();
-            return client;
-        }
+
     }
 }
