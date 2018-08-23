@@ -18,17 +18,13 @@ namespace apiClient
             _client = new HttpClient(new HttpClientHandler { UseProxy = false });
         }
 
-        public async Task<int?> PostAnswer(string datasetId, dto.Answer answer)
+        public async Task<Tuple<int?, string>> PostAnswer(string datasetId, dto.Answer answer)
         {
             var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(answer);
             var stringContent = new StringContent(JsonConvert.SerializeObject(answer), Encoding.UTF8, "application/json");
             HttpResponseMessage response = await _client.PostAsync(string.Format("{0}/api/{1}/answer", _client.BaseAddress, datasetId), stringContent);
             string result = await response.Content.ReadAsStringAsync();
-            if (response.IsSuccessStatusCode)
-            { 
-                return (int)response.StatusCode;
-            }
-            return null;
+            return new Tuple<int?, string>((int)response.StatusCode, response.ToString());
         }
 
 

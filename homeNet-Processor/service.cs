@@ -26,15 +26,9 @@ namespace homeNetProcessor
                 Task<Tuple<string, int>> task = Task.Run(async () => await _client.GetDataset());
                 task.Wait();
                 Tuple<string, int> result = task.Result;
-
-                if (result == null)
-                {
-                    //log error
-                }
                 return result.Item1;
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 throw new ApplicationException(string.Format("GetDataSet failed : {0}", ex.Message));
             }
 
@@ -47,56 +41,55 @@ namespace homeNetProcessor
                 Task<Tuple<int[], int>> vehicleTask = Task.Run(async () => await _client.Getvehicles(datasetId));
                 vehicleTask.Wait();
                 Tuple<int[], int> result = vehicleTask.Result;
-
-                if (result == null)
-                {
-                    //log error
-                }
                 return result.Item1;
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 throw new ApplicationException(string.Format("GetvehicleList failed : {0}", ex.Message));
             }
         }
 
         public Tuple<apiClient.rdo.VehicleDetailsRepsonse, int> GetvehicleDetails(int vehcileID)
         {
-            Task<Tuple<apiClient.rdo.VehicleDetailsRepsonse, int>> vehicleDetailTask = Task.Run(async () => await _client.GetvehiclesDetails(datasetid, vehcileID));
-            vehicleDetailTask.Wait();
-            Tuple<apiClient.rdo.VehicleDetailsRepsonse, int> result = vehicleDetailTask.Result;
-
-            if (result == null)
+            try
             {
-                //log error
+                Task<Tuple<apiClient.rdo.VehicleDetailsRepsonse, int>> vehicleDetailTask = Task.Run(async () => await _client.GetvehiclesDetails(datasetid, vehcileID));
+                vehicleDetailTask.Wait();
+                Tuple<apiClient.rdo.VehicleDetailsRepsonse, int> result = vehicleDetailTask.Result;
+                return result;
             }
-            return result;
+            catch (Exception ex) {
+                throw new ApplicationException(string.Format("GetvehicleDetails failed : {0}", ex.Message));
+            }
         }
 
         public Tuple<apiClient.rdo.DealerDetailResponse, int> GetDealerDetails(int dealerId)
         {
-            Task<Tuple<apiClient.rdo.DealerDetailResponse, int>> DealerDetailTask = Task.Run(async () => await _client.GetDealerDetail(datasetid, dealerId));
-            DealerDetailTask.Wait();
-            Tuple<apiClient.rdo.DealerDetailResponse, int> result = DealerDetailTask.Result;
-
-            if (result == null)
+            try
             {
-                //log error
+                Task<Tuple<apiClient.rdo.DealerDetailResponse, int>> DealerDetailTask = Task.Run(async () => await _client.GetDealerDetail(datasetid, dealerId));
+                DealerDetailTask.Wait();
+                Tuple<apiClient.rdo.DealerDetailResponse, int> result = DealerDetailTask.Result;
+                return result;
             }
-            return result;
+            catch (Exception ex) {
+                throw new ApplicationException(string.Format("GetDealerDetails failed : {0}", ex.Message));
+            }
+
         }
 
-        public bool PostAnswer(apiClient.dto.Answer answer)
+        public Tuple<int?, string> PostAnswer(apiClient.dto.Answer answer)
         {
-            Task<int?> PostAnswerTask = Task.Run(async () => await _client.PostAnswer(datasetid, answer));
-            PostAnswerTask.Wait();
-            int? result = PostAnswerTask.Result;
-                
-            if (result != null)
+            try
             {
-                return true;
+                Task<Tuple<int?, string>> PostAnswerTask = Task.Run(async () => await _client.PostAnswer(datasetid, answer));
+                PostAnswerTask.Wait();
+                return PostAnswerTask.Result;
             }
-            return false;
+            catch (Exception ex)
+            {
+                throw new ApplicationException(string.Format("PostAnswer failed : {0}", ex.Message));
+            }
+
         }
 
         public Boolean LoadData()
